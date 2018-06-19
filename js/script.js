@@ -16,7 +16,15 @@ $(document).ready(function () {
         autoplayHoverPause: true,
         nav: true,
         dots: false,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>']
+        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 2
+            }
+        }
     });
 });
 /*======== Progress Bars =========*/
@@ -65,15 +73,128 @@ $(window).on('load', function () {
                Magnifier
 ============================================ */
 
-$(function(){
+$(function () {
 
     $("#portfolio-wrapper").magnificPopup({
-        delegate:'a',
+        delegate: 'a',
         type: 'image',
         gallery: {
             enabled: true
         }
 
     })
+});
+/* =========================================
+               Testimonials
+============================================ */
+$(document).ready(function () {
+    $("#testimonial-slider").owlCarousel({
+        items: 1,
+        autoplay: false,
+        smartSpeed: 700,
+        loop: true,
+        autoplayHoverPause: true,
+        nav: true,
+        dots: false,
+        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>']
+    });
+});
+/* =========================================
+               Stats
+============================================ */
+$(function () {
 
+    $(".counter").counterUp({
+        delay: 10,
+        time: 2000
+    })
+
+});
+/* =========================================
+               Clients
+============================================ */
+
+$(document).ready(function () {
+    $("#clients-list").owlCarousel({
+        items: 6,
+        autoplay: false,
+        smartSpeed: 700,
+        loop: true,
+        autoplayHoverPause: true,
+        nav: true,
+        dots: false,
+        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>']
+    });
+});
+/* =========================================
+               Google Map
+============================================ */
+$(window).on('load', function () {
+    //Map Variables
+    var addresString = '230 Brodway, NY, New York 10007, USA';
+    var myLatlng = {
+        lat: 40.712685,
+        lng: -74.005920
+    }
+
+    //1. Render Map
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 11,
+        center: myLatlng
+    });
+
+    //2. Add Marker 
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: "Click To See Adress"
+    });
+
+    //3. Add info Window
+    var infowindow = new google.maps.InfoWindow({
+        content: addresString
+    });
+    // Show info window when user clicks marker
+    marker.addListener('click', function () {
+        infowindow.open(map, marker);
+    });
+});
+
+/* =========================================
+               Navigation
+============================================ */
+
+/* Show & Hide White Navigation */
+
+$(function () {
+    showHideNav();
+    $(window).scroll(function () {
+        showHideNav();
+    });
+
+    function showHideNav() {
+        if ($(window).scrollTop() > 50) {
+            $("nav").addClass("white-nav-top");
+            $(".navbar-brand img").attr("src", "img/logo/logo-dark.png")
+
+            //show back to top button
+            $('#back-to-top').fadeIn();
+        } else {
+            $("nav").removeClass("white-nav-top")
+            $(".navbar-brand img").attr("src", "img/logo/logo.png")
+            $('#back-to-top').fadeOut();
+        }
+    }
+});
+
+/* Smooth Scrolling */
+$(function () {
+
+    $('a.smooth-scroll').click(function (e) {
+        e.preventDefault;
+        var section_id = $(this).attr('href');
+        $("html, body").animate({
+            scrollTop: $(section_id).offset().top - 64
+        }, 1250, "easeOutExpo");
+    });
 });
