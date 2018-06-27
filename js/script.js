@@ -32,7 +32,7 @@ $('#progress-elements').waypoint(function () {
     $('.progress-bar').each(function () {
         $(this).animate({
             width: $(this).attr('aria-valuenow') + "%"
-        }, 1000);
+        }, 2000);
     });
     this.destroy();
 }, {
@@ -231,4 +231,19 @@ $(function () {
     $("#mobile-nav-close-btn, #mobile-nav a").click(function() {
         $("#mobile-nav").css("height", "0%");
     });
+});
+/* =========================================
+               WOW Animation
+============================================ */
+
+$(function () {
+    new WOW().init();
+});
+// home animation on page load
+$(window).on('load',function(){
+    $('#home-heading-1').addClass('animated fadeInDown');
+    $('#home-heading-2').addClass('animated fadeInLeft');
+    $("#home-text").addClass('animated zoomIn');
+    $("#home-btn").addClass('animated zoomIn');
+    $("#arrow-down i").addClass('animated fadeInDown infinite');
 });
