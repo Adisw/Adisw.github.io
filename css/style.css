@@ -1287,7 +1287,7 @@ ul.navbar-nav>li>a:focus {
 
 .white-nav-top ul.navbar-nav>li.active a {
     color: #f4c613;
-    font-weight: 500px;
+    font-weight: 500;
 }
 /* =========================================
                 Animation
